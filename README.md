@@ -5,7 +5,7 @@
 Welcome to the "On the road again" front-end.
 This is a repository of the front part of "On the road again" website project based on .
 This repo is linked to another repository which is :
-Front: https://github.com/ThéodoreLefrancois/on_the_back_encore
+Back: https://github.com/ThéodoreLefrancois/on_the_back_encore
 For more information on this project please contact : romain.zucconi@gmail.com
 Authors : Théodore Lefrançois, Linda Resseguier, David Mosca, Romain Zucconi.
 ```
