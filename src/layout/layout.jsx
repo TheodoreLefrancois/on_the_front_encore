@@ -1,10 +1,10 @@
-// import { Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 const Layout = ({ children }) => {
   return (
     <>
-      <div className="mt-5">{children}</div>
+      <Container className="mt-5">{children}</Container>
     </>
   );
 };
