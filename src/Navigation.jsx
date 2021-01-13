@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Button,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -11,7 +12,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
 } from 'reactstrap';
 
 const Navigation = () => {
@@ -21,32 +21,31 @@ const Navigation = () => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <Navbar color="warning" light expand="md">
+        <NavbarBrand href="/">OnTheRoadAgain</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
-            </NavItem>
+          <Nav className="mr-auto p-2 text-dark" navbar>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
+              <DropdownToggle className="text-dark" nav caret>
+                My Road Trips
               </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
+              <DropdownMenu right className="p-2 text-dark">
+                <DropdownItem>ROAD TRIP 1</DropdownItem>
+                <DropdownItem>ROAD TRIP 1</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
+                <DropdownItem>ALL MY ROAD TRIPS</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+            <NavItem>
+              <NavLink className="p-2 text-dark" href="/">
+                Sign In
+              </NavLink>
+            </NavItem>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <Button color="dark" href="/">
+            Get Started
+          </Button>
         </Collapse>
       </Navbar>
     </div>
