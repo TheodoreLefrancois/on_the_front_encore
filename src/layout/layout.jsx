@@ -1,6 +1,6 @@
 import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
-import Navigation from '../navigation';
+import Navigation from '../Navigation';
 import CreateAccount from '../create_account';
 
 const Layout = ({ children }) => {
