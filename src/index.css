@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar-toggler {
+  color: navbar-dark-color;
+  border-color: navbar-dark-toggler-border-color;
+}
