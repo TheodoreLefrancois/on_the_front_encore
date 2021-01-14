@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Jumbotron,
@@ -76,6 +77,9 @@ const SignIn = () => {
               </FormGroup>
               <Button>Submit</Button>
             </Form>
+            <Button color="info">
+              <Link to="/signup"> Create an account </Link>
+            </Button>
           </Jumbotron>
         </Col>
       </Row>
