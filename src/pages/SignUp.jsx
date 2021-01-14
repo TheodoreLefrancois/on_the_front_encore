@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable react/no-unescaped-entities */
 import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -38,15 +36,15 @@ const SignUp = () => {
       e.preventDefault();
       axios
         .post('http://localhost:5000/api/v1/user', signDatas)
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           history.push('/signin');
         })
+        // eslint-disable-next-line no-console
         .catch((err) => console.log(err));
-      console.log('It works');
-      console.log(signDatas, confPassword);
+      // console.log('It works');
+      // console.log(signDatas, confPassword);
     } else {
-      console.log('Check inputs datas please!');
+      // console.log('Check inputs datas please!');
     }
   };
   return (
