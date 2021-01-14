@@ -27,10 +27,10 @@ const Navigation = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto p-2 text-dark" navbar>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle className="text-dark" nav caret>
+              <DropdownToggle nav caret>
                 My Road Trips
               </DropdownToggle>
-              <DropdownMenu right className="p-2 text-dark">
+              <DropdownMenu right className="p-2 ">
                 <DropdownItem>ROAD TRIP 1</DropdownItem>
                 <DropdownItem>ROAD TRIP 1</DropdownItem>
                 <DropdownItem divider />
