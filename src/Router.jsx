@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dispatch from './Dispatch';
 import Navigation from './Navigation';
 import Map from './pages/Map';
+import PinPopup from './pages/PinPopup';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
@@ -18,6 +19,12 @@ const Router = () => {
           layout={Navigation}
           tokenAuth={token}
           componentName="map"
+        />
+        <Dispatch
+          component={PinPopup}
+          layout={Navigation}
+          tokenAuth={token}
+          componentName="pinPopup"
         />
       </Switch>
     </BrowserRouter>
