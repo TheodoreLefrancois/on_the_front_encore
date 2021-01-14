@@ -1,6 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import axios from 'axios';
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Button,
   Jumbotron,
@@ -12,10 +15,13 @@ import {
   Label,
   Input,
 } from 'reactstrap';
+import { setLocalStorage } from '../store/token/actionCreator';
 
-const SignIn = () => {
+const SignIn = ({ setToken }) => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleSubmit = (e) => {
     const datas = {
       email,
@@ -26,6 +32,8 @@ const SignIn = () => {
       .post('http://localhost:5000/api/v1/auth', datas)
       .then((response) => {
         localStorage.setItem('token', response.data.token);
+        setToken(response.data.token);
+
         axios.interceptors.request.use(
           (config) => {
             const { origin } = new URL(config.url);
@@ -34,6 +42,8 @@ const SignIn = () => {
             if (allowedOrigins.includes(origin)) {
               // eslint-disable-next-line no-param-reassign
               config.headers.authorization = `Bearer ${token}`;
+              // eslint-disable-next-line no-param-reassign
+              config.headers.userId = response.data.user.id;
             }
             return config;
           },
@@ -41,6 +51,8 @@ const SignIn = () => {
             return Promise.reject(error);
           }
         );
+
+        if (response.data.token !== 'false') history.push('/map');
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
@@ -76,6 +88,9 @@ const SignIn = () => {
               </FormGroup>
               <Button>Submit</Button>
             </Form>
+            <Button color="info">
+              <Link to="/signup"> Create an account </Link>
+            </Button>
           </Jumbotron>
         </Col>
       </Row>
@@ -83,4 +98,12 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+  return { setToken: (token) => dispatch(setLocalStorage(token)) };
+};
+
+SignIn.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(SignIn);
