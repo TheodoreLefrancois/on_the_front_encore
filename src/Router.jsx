@@ -1,14 +1,13 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// eslint-disable-next-line import/no-named-as-default
 import Dispatch from './Dispatch';
 import Navigation from './Navigation';
-import SignIn from './pages/SignIn';
 import Locator from './mapComponents/Locator';
+import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
 const Router = () => {
-  // const token = useSelector((state) => state.tokenReducer.token);
+  const token = useSelector((state) => state.tokenReducer.token);
   return (
     <BrowserRouter>
       <Switch>
@@ -17,8 +16,8 @@ const Router = () => {
         <Dispatch
           component={Locator}
           layout={Navigation}
-          tokenAuth={localStorage.getItem('token')}
-          componentName="locator"
+          tokenAuth={token}
+          componentName="map"
         />
       </Switch>
     </BrowserRouter>
