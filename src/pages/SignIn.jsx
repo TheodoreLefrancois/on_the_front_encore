@@ -32,27 +32,28 @@ const SignIn = ({ setToken }) => {
       .post('http://localhost:5000/api/v1/auth', datas)
       .then((response) => {
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', response.data.user);
         setToken(response.data.token);
 
-        axios.interceptors.request.use(
-          (config) => {
-            const { origin } = new URL(config.url);
-            const allowedOrigins = ['http://localhost:5000'];
-            const token = localStorage.getItem('token');
-            if (allowedOrigins.includes(origin)) {
-              // eslint-disable-next-line no-param-reassign
-              config.headers.authorization = `Bearer ${token}`;
-              // eslint-disable-next-line no-param-reassign
-              config.headers.userId = response.data.user.id;
-            }
-            return config;
-          },
-          (error) => {
-            return Promise.reject(error);
-          }
-        );
+        // axios.interceptors.request.use(
+        //   (config) => {
+        //     const { origin } = new URL(config.url);
+        //     const allowedOrigins = ['http://localhost:5000'];
+        //     const token = localStorage.getItem('token');
+        //     if (allowedOrigins.includes(origin)) {
+        //       // eslint-disable-next-line no-param-reassign
+        //       config.headers.authorization = `Bearer ${token}`;
+        //       // eslint-disable-next-line no-param-reassign
+        //       config.headers.userId = response.data.user.id;
+        //     }
+        //     return config;
+        //   },
+        //   (error) => {
+        //     return Promise.reject(error);
+        //   }
+        // );
 
-        if (response.data.token !== 'false') history.push('/map');
+        if (response.data.token !== 'false') history.push('/');
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
