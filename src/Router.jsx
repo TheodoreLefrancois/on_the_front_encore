@@ -8,7 +8,12 @@ const Router = () => {
     <BrowserRouter>
       <Layout>
         <Switch>
-          <Route path="/auth" component={Auth} />
+          {!localStorage.getItem('token') ? (
+            <Route path="/auth" component={Auth} />
+          ) : (
+            /* si authentifié */
+            <Route path="/auth" component={Auth} />
+          )}
         </Switch>
       </Layout>
     </BrowserRouter>
