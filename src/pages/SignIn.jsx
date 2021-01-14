@@ -2,8 +2,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import {
   Button,
   Jumbotron,
@@ -88,6 +89,9 @@ const SignIn = ({ setToken }) => {
               </FormGroup>
               <Button>Submit</Button>
             </Form>
+            <Button color="info">
+              <Link to="/signup"> Create an account </Link>
+            </Button>
           </Jumbotron>
         </Col>
       </Row>

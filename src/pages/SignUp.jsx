@@ -1,4 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-unescaped-entities */
+import axios from 'axios';
+import { useState } from 'react';
 import {
   Button,
   Jumbotron,
@@ -12,6 +15,35 @@ import {
 } from 'reactstrap';
 
 const SignUp = () => {
+  const [signDatas, setSignDatas] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  });
+  const [confPassword, setConfPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    if (
+      signDatas.firstName &&
+      signDatas.lastName &&
+      signDatas.email &&
+      signDatas.password &&
+      confPassword &&
+      confPassword === signDatas.password &&
+      signDatas.email.includes('@')
+    ) {
+      e.preventDefault();
+      axios
+        .post('http://localhost:5000/api/v1/user', signDatas)
+        .then((response) => console.log(response))
+        .catch((err) => console.log(err));
+      console.log('It works');
+      console.log(signDatas, confPassword);
+    } else {
+      console.log('Check inputs datas please!');
+    }
+  };
   return (
     <Container>
       <Row>
@@ -25,6 +57,12 @@ const SignUp = () => {
                   type="firstname"
                   name="firstname"
                   id="firstname"
+                  onChange={(e) =>
+                    setSignDatas({
+                      ...signDatas,
+                      firstName: e.target.value,
+                    })
+                  }
                   placeholder="Jean"
                 />
               </FormGroup>
@@ -34,6 +72,9 @@ const SignUp = () => {
                   type="lastname"
                   name="lastname"
                   id="lastname"
+                  onChange={(e) =>
+                    setSignDatas({ ...signDatas, lastName: e.target.value })
+                  }
                   placeholder="McKay"
                 />
               </FormGroup>
@@ -43,6 +84,9 @@ const SignUp = () => {
                   type="email"
                   name="email"
                   id="email"
+                  onChange={(e) =>
+                    setSignDatas({ ...signDatas, email: e.target.value })
+                  }
                   placeholder="jean.mckay@gmail.com"
                 />
               </FormGroup>
@@ -52,10 +96,23 @@ const SignUp = () => {
                   type="password"
                   name="password"
                   id="password"
+                  onChange={(e) =>
+                    setSignDatas({ ...signDatas, password: e.target.value })
+                  }
                   placeholder="xxx"
                 />
               </FormGroup>
-              <Button>Submit</Button>
+              <FormGroup>
+                <Label for="password">Confirm Password</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  id="password"
+                  onChange={(e) => setConfPassword(e.target.value)}
+                  placeholder="xxx"
+                />
+              </FormGroup>
+              <Button onClick={handleSubmit}>Submit</Button>
             </Form>
           </Jumbotron>
         </Col>
