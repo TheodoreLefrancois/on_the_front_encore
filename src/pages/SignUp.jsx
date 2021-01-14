@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import axios from 'axios';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Jumbotron,
@@ -15,6 +16,7 @@ import {
 } from 'reactstrap';
 
 const SignUp = () => {
+  const history = useHistory();
   const [signDatas, setSignDatas] = useState({
     firstName: '',
     lastName: '',
@@ -36,7 +38,10 @@ const SignUp = () => {
       e.preventDefault();
       axios
         .post('http://localhost:5000/api/v1/user', signDatas)
-        .then((response) => console.log(response))
+        .then((response) => {
+          console.log(response);
+          history.push('/signin');
+        })
         .catch((err) => console.log(err));
       console.log('It works');
       console.log(signDatas, confPassword);
