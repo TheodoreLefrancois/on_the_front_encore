@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import axios from 'axios';
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Button,
   Jumbotron,
@@ -13,11 +15,13 @@ import {
   Label,
   Input,
 } from 'reactstrap';
+import { setLocalStorage } from '../store/token/actionCreator';
 
-const SignIn = () => {
+const SignIn = ({ setToken, tokenValue }) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleSubmit = (e) => {
     const datas = {
       email,
@@ -28,6 +32,7 @@ const SignIn = () => {
       .post('http://localhost:5000/api/v1/auth', datas)
       .then((response) => {
         localStorage.setItem('token', response.data.token);
+        setToken(response.data.token);
 
         axios.interceptors.request.use(
           (config) => {
@@ -46,7 +51,12 @@ const SignIn = () => {
             return Promise.reject(error);
           }
         );
-        history.push('/map');
+
+        if (tokenValue !== null) {
+          setTimeout(() => {
+            history.push('/map');
+          }, 0);
+        }
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
@@ -89,4 +99,17 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+  return { setToken: (token) => dispatch(setLocalStorage(token)) };
+};
+
+const mapStateToProps = (state) => {
+  return { tokenValue: state.tokenReducer.token };
+};
+
+SignIn.propTypes = {
+  setToken: PropTypes.func.isRequired,
+  tokenValue: PropTypes.string.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

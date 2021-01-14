@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import {
   Button,
   Collapse,
@@ -15,8 +18,9 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import { clearLocalStorage } from './store/token/actionCreator';
 
-const Navigation = () => {
+const Navigation = ({ clearToken }) => {
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,6 +45,7 @@ const Navigation = () => {
         return Promise.reject(error);
       }
     );
+    clearToken();
     history.push('/');
   };
   return (
@@ -76,4 +81,10 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+const mapDispatchToProps = { clearToken: () => clearLocalStorage() };
+
+Navigation.propTypes = {
+  clearToken: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Navigation);

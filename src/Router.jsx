@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dispatch from './Dispatch';
 import Navigation from './Navigation';
@@ -5,6 +6,7 @@ import Map from './pages/Map';
 import SignIn from './pages/SignIn';
 
 const Router = () => {
+  const token = useSelector((state) => state.tokenReducer.token);
   return (
     <BrowserRouter>
       <Switch>
@@ -12,7 +14,7 @@ const Router = () => {
         <Dispatch
           component={Map}
           layout={Navigation}
-          tokenAuth={localStorage.getItem('token')}
+          tokenAuth={token}
           componentName="map"
         />
       </Switch>
