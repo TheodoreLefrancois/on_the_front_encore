@@ -88,9 +88,8 @@ const SignIn = ({ setToken }) => {
               </FormGroup>
               <Button>Submit</Button>
             </Form>
-            <Button color="info">
-              <Link to="/signup"> Create an account </Link>
-            </Button>
+
+            <Link to="/signup"> Create an account </Link>
           </Jumbotron>
         </Col>
       </Row>
