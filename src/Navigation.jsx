@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Collapse,
@@ -15,10 +17,32 @@ import {
 } from 'reactstrap';
 
 const Navigation = () => {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+
+    axios.interceptors.request.use(
+      (config) => {
+        const { origin } = new URL(config.url);
+        const allowedOrigins = ['http://localhost:5000'];
+        if (allowedOrigins.includes(origin)) {
+          // eslint-disable-next-line no-param-reassign
+          config.headers.authorization = '';
+          // eslint-disable-next-line no-param-reassign
+          config.headers.userId = '';
+        }
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+    history.push('/');
+  };
   return (
     <div>
       <Navbar color="warning" light expand="md">
@@ -43,8 +67,8 @@ const Navigation = () => {
               </NavLink>
             </NavItem>
           </Nav>
-          <Button color="dark" href="/">
-            Get Started
+          <Button color="dark" onClick={() => handleSignOut()}>
+            Sign out
           </Button>
         </Collapse>
       </Navbar>

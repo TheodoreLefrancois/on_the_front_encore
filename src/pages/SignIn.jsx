@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import axios from 'axios';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Jumbotron,
@@ -14,6 +15,7 @@ import {
 } from 'reactstrap';
 
 const SignIn = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleSubmit = (e) => {
@@ -44,6 +46,7 @@ const SignIn = () => {
             return Promise.reject(error);
           }
         );
+        history.push('/map');
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
