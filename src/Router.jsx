@@ -1,22 +1,21 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import Layout from './layout/Layout';
-import Auth from './pages/Auth';
+import Dispatch from './Dispatch';
+import Navigation from './Navigation';
+import Map from './pages/Map';
 import SignIn from './pages/SignIn';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Layout>
-        <Switch>
-          {!localStorage.getItem('token') ? (
-            <Route path="/sigin" component={SignIn} />
-          ) : (
-            /* si authentifié */
-            <Route path="/auth" component={Auth} />
-          )}
-        </Switch>
-      </Layout>
+      <Switch>
+        <Route path="/signin" component={SignIn} />
+        <Dispatch
+          component={Map}
+          layout={Navigation}
+          tokenAuth={localStorage.getItem('token')}
+          componentName="map"
+        />
+      </Switch>
     </BrowserRouter>
   );
 };
