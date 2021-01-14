@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dispatch from './Dispatch';
 import Navigation from './Navigation';
-import Map from './pages/Map';
+import Locator from './mapComponents/Locator';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
@@ -14,7 +14,7 @@ const Router = () => {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Dispatch
-          component={Map}
+          component={Locator}
           layout={Navigation}
           tokenAuth={token}
           componentName="map"
