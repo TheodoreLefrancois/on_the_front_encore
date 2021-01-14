@@ -1,17 +1,24 @@
+/* eslint-disable no-console */
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import axios from 'axios';
-
-axios
-  .get('localhost:3080/api/v1/pin')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-  .then(function () {});
+import { useState, useEffect } from 'react';
 
 export default function Map() {
+  const [pins, setPins] = useState([]);
+
+  const api = axios.create({
+    baseURL: `http://localhost:3080/api/v1/pin`,
+  });
+
+  useEffect(() => {
+    api
+      .get('/')
+      .then((res) => {
+        setPins(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <MapContainer
       style={{ height: '90vh', width: '100%' }}
@@ -23,11 +30,14 @@ export default function Map() {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      {pins.map((pin) => (
+        <Marker key={pin.id} position={[pin.lat, pin.long]}>
+          <Popup>
+            <h5>{pin.title}</h5>
+            <p>{pin.description}</p>
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }
