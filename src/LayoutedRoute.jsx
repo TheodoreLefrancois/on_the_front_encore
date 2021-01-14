@@ -5,7 +5,6 @@ import { Route } from 'react-router-dom';
 export default function LayoutedRoute({
   component: Component,
   layout: Layout,
-  tokenAuth: token,
   componentName: compName,
   ...rest
 }) {
@@ -28,6 +27,5 @@ export default function LayoutedRoute({
 LayoutedRoute.propTypes = {
   component: PropTypes.node.isRequired,
   layout: PropTypes.node.isRequired,
-  tokenAuth: PropTypes.string.isRequired,
   componentName: PropTypes.string.isRequired,
 };
