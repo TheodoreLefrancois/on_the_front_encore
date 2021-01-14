@@ -11,7 +11,7 @@ import {
   Input,
 } from 'reactstrap';
 
-const CreateAccount = () => {
+const SignUp = () => {
   return (
     <Container>
       <Row>
@@ -64,4 +64,4 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default SignUp;

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Layout from './layout/layout';
+import Layout from './layout/Layout';
 import Auth from './pages/Auth';
 
 const Router = () => {
