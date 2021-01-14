@@ -46,7 +46,7 @@ const Navigation = ({ clearToken }) => {
       }
     );
     clearToken('false');
-    history.push('/');
+    history.push('/signin');
   };
   return (
     <div>

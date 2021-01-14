@@ -43,7 +43,7 @@ const SignIn = ({ setToken }) => {
               // eslint-disable-next-line no-param-reassign
               config.headers.authorization = `Bearer ${token}`;
               // eslint-disable-next-line no-param-reassign
-              config.headers.userId = response.user.id;
+              config.headers.userId = response.data.user.id;
             }
             return config;
           },
