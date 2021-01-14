@@ -9,9 +9,11 @@ export const setLocalStorage = (token) => {
   };
 };
 
-export const clearLocalStorage = () => {
+export const clearLocalStorage = (token) => {
   return {
     type: SET_LOCAL_STORAGE,
-    payload: {},
+    payload: {
+      token,
+    },
   };
 };

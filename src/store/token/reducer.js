@@ -1,7 +1,7 @@
 import { CLEAR_LOCAL_STORAGE, SET_LOCAL_STORAGE } from './actionType';
 
 const initialState = {
-  token: null,
+  token: 'false',
 };
 
 const tokenReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const tokenReducer = (state = initialState, action) => {
     case SET_LOCAL_STORAGE:
       return { ...state, token: action.payload.token };
     case CLEAR_LOCAL_STORAGE:
-      return { ...state, token: null };
+      return { ...state, token: action.payload.token };
     default:
       return state;
   }

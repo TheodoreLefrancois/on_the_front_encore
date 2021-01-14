@@ -45,7 +45,7 @@ const Navigation = ({ clearToken }) => {
         return Promise.reject(error);
       }
     );
-    clearToken();
+    clearToken('false');
     history.push('/');
   };
   return (
@@ -81,7 +81,11 @@ const Navigation = ({ clearToken }) => {
   );
 };
 
-const mapDispatchToProps = { clearToken: () => clearLocalStorage() };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearToken: (token) => dispatch(clearLocalStorage(token)),
+  };
+};
 
 Navigation.propTypes = {
   clearToken: PropTypes.func.isRequired,

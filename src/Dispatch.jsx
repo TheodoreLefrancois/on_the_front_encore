@@ -11,7 +11,7 @@ export default function Dispatch({
 }) {
   return (
     <>
-      {token ? (
+      {token !== 'false' ? (
         <LayoutedRoute
           component={Component}
           layout={Layout}

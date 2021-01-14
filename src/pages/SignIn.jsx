@@ -17,7 +17,7 @@ import {
 } from 'reactstrap';
 import { setLocalStorage } from '../store/token/actionCreator';
 
-const SignIn = ({ setToken, tokenValue }) => {
+const SignIn = ({ setToken }) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -52,11 +52,7 @@ const SignIn = ({ setToken, tokenValue }) => {
           }
         );
 
-        if (tokenValue !== null) {
-          setTimeout(() => {
-            history.push('/map');
-          }, 0);
-        }
+        if (response.data.token !== 'false') history.push('/map');
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
@@ -103,13 +99,8 @@ const mapDispatchToProps = (dispatch) => {
   return { setToken: (token) => dispatch(setLocalStorage(token)) };
 };
 
-const mapStateToProps = (state) => {
-  return { tokenValue: state.tokenReducer.token };
-};
-
 SignIn.propTypes = {
   setToken: PropTypes.func.isRequired,
-  tokenValue: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(SignIn);
