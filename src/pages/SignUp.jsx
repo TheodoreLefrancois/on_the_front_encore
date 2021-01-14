@@ -11,14 +11,32 @@ import {
   Input,
 } from 'reactstrap';
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <Container>
       <Row>
         <Col>
           <Jumbotron className="mt-5">
-            <h1 className="display-8">Sign In</h1>
+            <h1 className="display-8">Create Your Account</h1>
             <Form>
+              <FormGroup>
+                <Label for="firstname">Firstname</Label>
+                <Input
+                  type="firstname"
+                  name="firstname"
+                  id="firstname"
+                  placeholder="Jean"
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="lastname">Lastname</Label>
+                <Input
+                  type="lastname"
+                  name="lastname"
+                  id="lastname"
+                  placeholder="McKay"
+                />
+              </FormGroup>
               <FormGroup>
                 <Label for="email">Email</Label>
                 <Input
@@ -46,4 +64,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

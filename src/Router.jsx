@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Layout from './layout/layout';
+import Layout from './layout/Layout';
 import Auth from './pages/Auth';
+import SignIn from './pages/SignIn';
 
 const Router = () => {
   return (
@@ -9,7 +10,7 @@ const Router = () => {
       <Layout>
         <Switch>
           {!localStorage.getItem('token') ? (
-            <Route path="/auth" component={Auth} />
+            <Route path="/sigin" component={SignIn} />
           ) : (
             /* si authentifié */
             <Route path="/auth" component={Auth} />
