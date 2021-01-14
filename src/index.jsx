@@ -4,6 +4,7 @@ import './index.css';
 import Router from './Router';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,13 +1,11 @@
 import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
-import Navigation from '../Navigation';
-import CreateAccount from '../create_account';
+import Navigation from './Navigation';
 
 const Layout = ({ children }) => {
   return (
     <>
       <Navigation />
-      <CreateAccount />
       <Container className="mt-5">{children}</Container>
     </>
   );
