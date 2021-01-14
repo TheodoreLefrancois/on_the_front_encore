@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Collapse,
@@ -6,8 +8,6 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -15,10 +15,33 @@ import {
 } from 'reactstrap';
 
 const Navigation = () => {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+
+    axios.interceptors.request.use(
+      (config) => {
+        const { origin } = new URL(config.url);
+        const allowedOrigins = ['http://localhost:5000'];
+        if (allowedOrigins.includes(origin)) {
+          // eslint-disable-next-line no-param-reassign
+          config.headers.authorization = '';
+          // eslint-disable-next-line no-param-reassign
+          config.headers.userId = '';
+
+          history.push('/');
+        }
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+  };
   return (
     <div>
       <Navbar color="warning" light expand="md">
@@ -37,14 +60,14 @@ const Navigation = () => {
                 <DropdownItem>ALL MY ROAD TRIPS</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-            <NavItem>
+            {/* <NavItem>
               <NavLink className="p-2 text-dark" href="/">
-                Sign In
+                Sign Out
               </NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
-          <Button color="dark" href="/">
-            Get Started
+          <Button color="dark" onClick={() => handleSignOut()}>
+            Sign out
           </Button>
         </Collapse>
       </Navbar>

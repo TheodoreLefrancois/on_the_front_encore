@@ -26,6 +26,7 @@ const SignIn = () => {
       .post('http://localhost:5000/api/v1/auth', datas)
       .then((response) => {
         localStorage.setItem('token', response.data.token);
+
         axios.interceptors.request.use(
           (config) => {
             const { origin } = new URL(config.url);
@@ -34,6 +35,8 @@ const SignIn = () => {
             if (allowedOrigins.includes(origin)) {
               // eslint-disable-next-line no-param-reassign
               config.headers.authorization = `Bearer ${token}`;
+              // eslint-disable-next-line no-param-reassign
+              config.headers.userId = response.user.id;
             }
             return config;
           },
