@@ -1,9 +1,20 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import axios from 'axios';
+
+axios
+  .get('localhost:3080/api/v1/pin')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .then(function () {});
 
 export default function Map() {
   return (
     <MapContainer
-      style={{ height: '90vh', width: '100vw' }}
+      style={{ height: '90vh', width: '100%' }}
       center={[51.505, -0.09]}
       zoom={13}
       scrollWheelZoom={false}

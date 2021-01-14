@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dispatch from './Dispatch';
 import Navigation from './Navigation';
-import Map from './pages/Map';
 import SignIn from './pages/SignIn';
+import Locator from './mapComponents/Locator';
 
 const Router = () => {
   return (
@@ -10,10 +10,10 @@ const Router = () => {
       <Switch>
         <Route path="/signin" component={SignIn} />
         <Dispatch
-          component={Map}
+          component={Locator}
           layout={Navigation}
           tokenAuth={localStorage.getItem('token')}
-          componentName="map"
+          componentName="locator"
         />
       </Switch>
     </BrowserRouter>
