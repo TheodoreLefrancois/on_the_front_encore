@@ -6,8 +6,8 @@ import Dispatch from './Dispatch';
 import Navigation from './Navigation';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-// import Locator from './mapComponents/Locator';
-import Map from './mapComponents/Map';
+import Locator from './mapComponents/Locator';
+// import Map from './mapComponents/Map';
 
 import { setLocalStorage } from './store/token/actionCreator';
 
@@ -26,7 +26,7 @@ const Router = ({ setToken }) => {
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Dispatch
-          component={Map}
+          component={Locator}
           layout={Navigation}
           tokenAuth={token}
           componentName=""
