@@ -1,15 +1,15 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import axios from 'axios';
+// import axios from 'axios';
 
-axios
-  .get('localhost:3080/api/v1/pin')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-  .then(function () {});
+// axios
+//   .get('localhost:3080/api/v1/pin')
+//   .then(function (response) {
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   })
+//   .then(function () {});
 
 export default function Map() {
   return (
