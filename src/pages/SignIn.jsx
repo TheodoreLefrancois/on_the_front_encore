@@ -52,7 +52,7 @@ const SignIn = ({ setToken }) => {
           }
         );
 
-        if (response.data.token !== 'false') history.push('/map');
+        if (response.data.token !== 'false') history.push('/');
       })
       .catch((err) => {
         // eslint-disable-next-line no-console

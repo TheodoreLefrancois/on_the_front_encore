@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
@@ -60,7 +60,9 @@ const Navigation = ({ clearToken }) => {
                 My Road Trips
               </DropdownToggle>
               <DropdownMenu right className="p-2 ">
-                <DropdownItem>ROAD TRIP 1</DropdownItem>
+                <Link to="/">
+                  <DropdownItem>ROAD TRIP 1</DropdownItem>
+                </Link>
                 <DropdownItem>ROAD TRIP 1</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>ALL MY ROAD TRIPS</DropdownItem>
