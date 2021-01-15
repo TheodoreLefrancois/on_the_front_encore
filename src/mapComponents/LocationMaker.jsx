@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Marker, useMapEvents } from 'react-leaflet';
-import PinPopup from '../components/PinPopup';
+import PinPopup from './PinPopup';
 
 export default function LocationMarker() {
   const [position, setPosition] = useState(null);
